@@ -1,0 +1,44 @@
+
+@mixin flex($gap, $direction: row, $justify: flex-start, $align: stretch) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-center($gap: 0) {
+    @include flex($gap, row, center, center);
+}
+
+@mixin column-flex($gap) {
+    @include flex($gap, column);
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin mask-icon($image, $color, $width, $height: $width) {
+    display: block;
+    background-color: $color;
+    width: $width;
+    height: $height;
+    -webkit-mask-image: $image;
+    mask-image: $image;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: $width, $height;
+    mask-size: $width, $height;
+}
+
+@mixin max-card-width($part, $max-vw: 1280px) {
+    max-width: calc(#{$max-vw}  * #{$part});
+    width: 100%;
+}
+
+@mixin absolute-vertical-align {
+    top: 50%;
+    transform: translateY(-50%);
+}

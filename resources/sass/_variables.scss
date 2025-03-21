@@ -1,7 +1,89 @@
-// Body
+// Body colors
 $body-bg: #fafafa;
+$body-color: #111827;
+$body-secondary-bg: #FFF;
+$primary: #FF6E4E;
+$muted-color: #71717A;
+$border-color: #E4E4E7;
 
+//Images
+$pagination-img-left: url("data:image/svg+xml,%3Csvg width='7' height='10' viewBox='0 0 7 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9L1.5 5L5.5 1' stroke='%23111827' stroke-width='1.33' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$pagination-img-right: url("data:image/svg+xml,%3Csvg width='7' height='10' viewBox='0 0 7 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 9L5.5 5L1.5 1' stroke='%23111827' stroke-width='1.33' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+$search-img: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14.0001 14L11.1335 11.1333M12.6667 7.33333C12.6667 10.2789 10.2789 12.6667 7.33333 12.6667C4.38781 12.6667 2 10.2789 2 7.33333C2 4.38781 4.38781 2 7.33333 2C10.2789 2 12.6667 4.38781 12.6667 7.33333Z' stroke='%2371717A' stroke-width='1.33' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+
+//Spacing
+$grid-columns: 10;
+$container-inner-padding: 1.5rem;
 // Typography
 $font-family-sans-serif: 'Inter', sans-serif;
-$font-size-base: 0.9rem;
+$font-size-base: .875rem;
 $line-height-base: 1.4;
+$h1-font-size: 1.5rem;
+$h2-font-size: 1.25rem;
+$h3-font-size: 1.125rem;
+
+$font-weight-base: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$headings-font-weight: $font-weight-semibold;
+
+//Elements
+$btn-color: $body-secondary-bg;
+$btn-font-weight: $font-weight-medium;
+$component-active-color: $body-secondary-bg;
+
+$link-color: $body-color;
+
+$border-radius-lg: 8px;
+$border-radius-md: 6px;
+
+$input-btn-padding-y: .625rem;
+$input-btn-padding-x: 1rem;
+
+$card-bg: $body-secondary-bg;
+$card-border-color: transparent;
+$card-title-spacer-y: none;
+$card-spacer-x: $container-inner-padding;
+$card-spacer-y: $card-spacer-x;
+$card-title-color: #030712;
+
+$modal-inner-padding: $container-inner-padding;
+$modal-content-bg: $body-secondary-bg;
+$modal-backdrop-opacity: .2;
+
+$form-label-font-weight: $font-weight-medium;
+
+$input-padding-x: .75rem;
+$input-border-color: $border-color;
+$input-placeholder-color: $muted-color;
+$input-plaintext-color: $muted-color;
+$input-bg: $body-secondary-bg;
+
+$input-group-addon-bg: transparent;
+$input-group-addon-border-color: transparent;
+
+//Table
+$table-th-font-weight: $font-weight-medium;
+$table-th-color: $muted-color;
+$table-color: $body-color;
+$table-cell-padding-x: 1rem;
+$table-cell-padding-y: $table-cell-padding-x;
+
+//Pagination
+$pagination-bg: transparent;
+$pagination-border-radius: $border-radius-md;
+$pagination-color: $body-color;
+
+$pagination-disabled-border-color: transparent;
+$pagination-disabled-color: $muted-color;
+$pagination-disabled-bg: transparent;
+
+$pagination-active-color: $body-color;
+$pagination-active-bg: $body-secondary-bg;
+$pagination-active-border-color: $border-color;
+
+$pagination-focus-bg: transparent;
+
+//Search form Icon
+$search-icon-size: 16px;
+$search-icon-gap: 4px;
