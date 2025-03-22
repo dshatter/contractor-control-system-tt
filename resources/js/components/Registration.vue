@@ -1,6 +1,42 @@
 <script>
 export default {
     name: "Registration",
+
+    data() {
+        return {
+            user: {
+                email: null,
+                password: null,
+            }
+        }
+    },
+    methods: {
+        register() {
+
+            axios
+                .get('/sanctum/csrf-cookie')
+                .then(response => {
+
+                    axios
+                        .post('/api/register', this.user)
+                        .then( res => {
+                            localStorage.setItem('x_xsrf_token', this.getCookie(res.config.xsrfCookieName));
+                            this.$router.push({ name: 'user.index' });
+                        })
+                        .catch(err => {
+                            console.log(err.response.data);
+                        });
+
+                });
+
+        },
+        getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        },
+    }
 }
 
 </script>
@@ -12,14 +48,14 @@ export default {
                 <h2 class="card-title">Регистрация</h2>
                 <form>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="example@einzelwerk.ru" required>
+                        <label class="form-label">Email</label>
+                        <input type="email" v-model="user.email" class="form-control" placeholder="example@einzelwerk.ru" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Пароль</label>
-                        <input type="password" class="form-control" id="password" placeholder="************" required>
+                        <label class="form-label">Пароль</label>
+                        <input type="password" v-model="user.password" class="form-control" placeholder="************" required>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Создать аккаунт</button>
+                    <button type="submit" @click.prevent="register" value="register" class="btn btn-primary w-100">Создать аккаунт</button>
                 </form>
                 <hr class="my-2">
                 <span class="text-center">Уже есть аккаунт? <router-link :to="{ name: 'user.login' }">Войти</router-link></span>

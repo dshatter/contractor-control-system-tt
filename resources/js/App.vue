@@ -1,16 +1,36 @@
 <template>
     <div class="btn-group" style="position: absolute; top: 5px;">
-        <router-link class="btn btn-outline-primary" :to="{ name: 'get.index' }">Get</router-link>
-        <router-link class="btn btn-outline-info" :to="{ name: 'user.login' }">Login</router-link>
-        <router-link class="btn btn-outline-info" :to="{ name: 'user.register' }">Register</router-link>
+        <button v-if="!token" @click.prevent="logout" class="btn btn-outline-dark">Logout</button>
     </div>
     <router-view></router-view>
 </template>
 
 <script>
 export default {
-    mounted() {
-        console.log('Component mounted.');
+    data() {
+        return {
+            token: null,
+        }
     },
+    methods: {
+        logout() {
+            axios.post('/api/logout')
+                .then(res => {
+                    localStorage.removeItem('x_xsrf_token');
+                    this.$router.push({ name: 'user.login' });
+                })
+                .catch(err => {
+                });
+        },
+        getToken() {
+            this.token = localStorage.getItem('x_xsrf_token');
+        }
+    },
+    mounted() {
+
+    },
+    updated() {
+        this.getToken();
+    }
 };
 </script>
