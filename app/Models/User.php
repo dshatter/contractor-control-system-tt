@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function contractors()
     {
-        return $this->belongsToMany(Contractor::class);
+        return $this->belongsToMany(Contractor::class, 'contractor_users');
     }
 
 }

@@ -21,8 +21,16 @@ return new class extends Migration
             $table->index('user_id', 'contractor_user_user_idx');
 
             //foreign-keys
-            $table->foreign('contractor_id', 'contractor_user_contractor_fk')->on('contractors')->references('id')->onDelete('cascade');
-            $table->foreign('user_id', 'contractor_user_user_fk')->on('contractors')->references('id')->onDelete('cascade');
+            $table
+                ->foreign('contractor_id', 'contractor_user_contractor_fk')
+                ->on('contractors')
+                ->references('id')
+                ->onDelete('cascade');
+            $table
+                ->foreign('user_id', 'contractor_user_user_fk')
+                ->on('contractors')
+                ->references('id')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

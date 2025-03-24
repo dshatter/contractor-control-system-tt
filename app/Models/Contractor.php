@@ -28,7 +28,7 @@ class Contractor extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'contractor_users');
     }
 
 }

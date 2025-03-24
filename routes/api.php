@@ -5,14 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::group(
-        [
-            'middleware' => 'auth:sanctum',
-            'namespace' => 'App\Http\Controllers\Contractors',
-            'prefix' => 'contractors',
-        ],
-        function () {
+
+Route::prefix('contractors')
+    ->namespace('App\Http\Controllers\Contractors')
+    ->middleware('auth:sanctum')
+    ->group(function () {
+            Route::post('/', StoreController::class);
             Route::get('/show', ShowController::class);
-            Route::post('/create', CreateController::class);
-        }
-);
+    });
