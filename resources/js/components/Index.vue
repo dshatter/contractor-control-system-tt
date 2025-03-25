@@ -67,8 +67,8 @@ export default {
                         <th>Адрес</th>
                     </tr>
                     </thead>
-                    <tbody v-for="contractor in data">
-                        <tr>
+                    <tbody>
+                        <tr v-for="contractor in data">
                             <td>{{ contractor.inn }}</td>
                             <td>{{ contractor.name }}</td>
                             <td>{{ contractor.ogrn }}</td>
@@ -100,7 +100,7 @@ export default {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <form>
                         <div class="my-3">
-                            <input type="text" v-model="inputInn" class="form-control mb-2" maxlength="10" name="inn" placeholder="ИНН">
+                            <input type="text" v-model="inputInn" class="form-control mb-2" maxlength="13" name="inn" placeholder="ИНН">
                             <div v-if="innError" class="invalid-feedback">
                                 {{ innError }}
                             </div>

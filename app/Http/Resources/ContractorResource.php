@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ContractorResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -22,4 +23,5 @@ class ContractorResource extends JsonResource
             'address' => $this->address,
         ];
     }
+
 }

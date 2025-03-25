@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'dadata' => [
+        'baseurl' => env('DADATA_API_ADDRESS'),
+        'token' => env('DADATA_TOKEN'),
+        'secret' => env('DADATA_SECRET')
+    ],
 
 ];

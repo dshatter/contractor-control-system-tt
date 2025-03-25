@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,7 +24,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'inn' => 'required|string|size:10'
+            'inn' => 'required|string|regex:/^\d{10}$/',
         ];
     }
+
 }
