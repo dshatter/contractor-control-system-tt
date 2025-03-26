@@ -6,24 +6,36 @@ export default {
             data: null,
             innError: null,
             inputInn: null,
+            paginationMeta: null,
+            getParams: {
+                page: 1,
+                search: ''
+            }
         };
+    },
+
+    watch: {
+        'getParams.page'(after, before) {
+            this.getData();
+        },
+        'getParams.search'(after, before) {
+            this.getData();
+        }
     },
 
     methods: {
         getData() {
             axios
-                .get('/api/contractors/show')
+                .get('/api/contractors', {params: this.getParams})
                 .then(res => {
                     this.data = res.data.data;
-                    console.log(res);
+                    this.paginationMeta = res.data.meta;
                 })
                 .catch(err => {
                     console.log(err);
                 });
         },
         addContractor() {
-            console.log('addContractor');
-            console.log(this.inputInn);
             axios
                 .post('/api/contractors', { inn: this.inputInn })
                 .then(res => {
@@ -32,6 +44,25 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
+        },
+        checkPage(target, active, total) {
+            target = Number(target);
+            active = Number(active);
+            total = Number(total);
+            return target &&
+                ((active - target) < 2 && (active - target) > -2) ||
+                (target === 1 || target === total)
+        },
+        checkThreeDots(target, active, total) {
+            target = Number(target);
+            active = Number(active);
+            total = Number(total);
+            return target &&
+                ((active - target) === 2) || ((active - target) === -2) &&
+                ((target !== 1) && (target !== total));
+        },
+        setPage(number) {
+            this.getParams.page = number;
         }
 
     },
@@ -55,7 +86,7 @@ export default {
             </div>
             <div class="input-search-wrap mb-3 w-100">
                 <span class="input-search-icon"></span>
-                <input type="text" class="form-control" placeholder="Поиск по ИНН / наименованию" aria-label="Search">
+                <input v-model="getParams.search" type="text" class="form-control" placeholder="Поиск по ИНН / наименованию" aria-label="Search">
             </div>
             <div class="table-responsive">
                 <table class="table">
@@ -79,11 +110,28 @@ export default {
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination mt-3">
-                    <li class="page-item disabled"><a class="page-link" href="#">Назад</a></li>
-                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><span class="page-link">...</span></li>
-                    <li class="page-item"><a class="page-link" href="#">Далее</a></li>
+                    <li :class="{ 'page-item': true, 'disabled': (Number(paginationMeta.current_page) === 1) }">
+                        <button @click="setPage(paginationMeta.current_page - 1)" class="page-link">
+                            Назад
+                        </button>
+                    </li>
+                    <template v-for="link in paginationMeta.links">
+                        <li class="page-item" v-if="checkPage(link.label, paginationMeta.current_page, paginationMeta.last_page)">
+                            <a @click="setPage(link.label)" :class="{ 'page-link': true, 'active': link.active }" href="#">
+                                {{ link.label }}
+                            </a>
+                        </li>
+                        <li v-else-if="checkThreeDots(link.label, paginationMeta.current_page, paginationMeta.last_page)" class="page-item">
+                            <span class="page-link">
+                                ...
+                            </span>
+                        </li>
+                    </template>
+                    <li :class="{ 'page-item': true, 'disabled': (Number(paginationMeta.current_page) === paginationMeta.last_page) }">
+                        <button @click="setPage(paginationMeta.current_page + 1)" class="page-link">
+                            Далее
+                        </button>
+                    </li>
                 </ul>
             </nav>
 

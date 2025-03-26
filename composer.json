@@ -10,10 +10,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.9",
+        "http-interop/http-factory-guzzle": "^1.0",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
+        "laravel/scout": "^10.14",
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6",
+        "meilisearch/meilisearch-php": "^1.13",
         "saloonphp/laravel-plugin": "^3.0",
         "saloonphp/saloon": "^3.0"
     },
