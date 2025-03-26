@@ -3,7 +3,7 @@ export default {
     name: 'Index',
     data() {
         return {
-            data: null,
+            data: [],
             innError: null,
             inputInn: null,
             paginationMeta: null,
@@ -20,6 +20,11 @@ export default {
         },
         'getParams.search'(after, before) {
             this.getData();
+        }
+    },
+    computed: {
+        emptyData() {
+            return !this.data || this.data.length === 0;
         }
     },
 
@@ -73,8 +78,8 @@ export default {
 
 </script>
 <template>
-    <section class="content">           <!-- empty -->
-        <div v-if="!data" class="empty-state" >
+    <section class="content">
+        <div v-if="emptyData" class="empty-state" >
             <h3 class="empty-state__title">Контрагенты еще не добавлены</h3>
             <span class="empty-state__description mb-3">Добавьте первого контрагента</span>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContractor">Добавить</button>
@@ -148,7 +153,7 @@ export default {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <form>
                         <div class="my-3">
-                            <input type="text" v-model="inputInn" class="form-control mb-2" maxlength="13" name="inn" placeholder="ИНН">
+                            <input type="text" v-model="inputInn" class="form-control mb-2" maxlength="10" name="inn" placeholder="ИНН">
                             <div v-if="innError" class="invalid-feedback">
                                 {{ innError }}
                             </div>

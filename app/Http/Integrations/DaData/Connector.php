@@ -2,6 +2,7 @@
 
 namespace App\Http\Integrations\DaData;
 
+use App\Exceptions\ApplicationException;
 use App\Http\Integrations\DaData\Requests\ContractorByInnRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Saloon\Http\Auth\TokenAuthenticator;
@@ -63,7 +64,7 @@ class Connector extends BaseConnector
                 ]
             ));
         } catch (\Throwable $e) {
-            throw $e;
+            throw ApplicationException::init('Ошибка подключения к DaData API: '.$e->getMessage(), $e->getCode() ?? 503);
         }
         return $response->dto();
     }

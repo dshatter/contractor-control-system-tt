@@ -55,10 +55,7 @@ body {
         }
 
         .header-container {
-            @include flex(4, column, center, center);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            @include flex(4, row, space-between, center);
         }
     }
 

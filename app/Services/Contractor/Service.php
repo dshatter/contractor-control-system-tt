@@ -2,6 +2,7 @@
 
 namespace App\Services\Contractor;
 
+use App\Exceptions\ApplicationException;
 use App\Http\DataObjects\ContractorDto;
 use App\Http\DataObjects\ContractorSearchDTO;
 use App\Http\Resources\ContractorResource;
@@ -22,22 +23,40 @@ class Service
             'address' => $data->address,
         ]);
         $contractor->users()->syncWithoutDetaching(Auth::id());
+        if (!$contractor) {
+            throw ApplicationException::init('Не удалось добавить контрагента');
+        }
         return new ContractorResource($contractor);
     }
 
     public function show(ContractorSearchDTO $data): ResourceCollection
     {
-        $query = User::find(Auth::id())
-            ->contractors()
-            ->orderBy('id');
+        $query = User::find(Auth::id())->contractors();
+
+        if (!$query->exists()) {
+            throw ApplicationException::init('Контрагенты ещё не добавлены', 204);
+        }
 
         if ($data->search) {
+            $linkedIds = $query->get()->pluck('id');
             $query = Contractor::search($data->search)
-                ->whereIn('id', $query->get()->pluck('id'));
+                ->whereIn('id', $linkedIds);
+
+            $result = $query->paginate(
+                perPage: $data->countPerPage,
+                page: $data->page
+            );
+
+            if (empty($result['items'])) {
+                throw ApplicationException::notFound();
+            }
+
+            return ContractorResource::collection($result);
         }
+
         return ContractorResource::collection(
             $query->paginate(
-                perPage: 4,
+                perPage: $data->countPerPage,
                 page: $data->page
             )
         );

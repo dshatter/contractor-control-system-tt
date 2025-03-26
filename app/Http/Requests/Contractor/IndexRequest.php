@@ -29,4 +29,12 @@ class IndexRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'search.string' => '',
+            'search.regex' => 'Поиск осуществляется либо по ИНН (10 цифр) либо по названию организации(буквенные символы, кавычки, запятая)'
+        ];
+    }
+
 }

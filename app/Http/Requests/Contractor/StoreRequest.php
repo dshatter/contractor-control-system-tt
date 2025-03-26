@@ -28,4 +28,13 @@ class StoreRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'inn.required' => 'Поле ИНН обязательно для заполнения',
+            'inn.string' => 'Поле ИНН должно быть строкой и состоять из цифр',
+            'inn.regex' => 'Поле ИНН должно содержать ровно 10 цифр',
+        ];
+    }
+
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class IndexController extends BaseController
 {
+
     /**
      * Handle the incoming request.
      */
@@ -17,4 +18,5 @@ class IndexController extends BaseController
 
         return $this->service->show($data);
     }
+
 }

@@ -11,7 +11,8 @@ final class ContractorSearchDTO
 
     private function __construct(
         public readonly string $search,
-        public readonly int $page
+        public readonly int $page,
+        public readonly int $countPerPage
     ) {}
 
     public static function createFromRequest(Request $request): static
@@ -19,7 +20,8 @@ final class ContractorSearchDTO
         $data = $request->validated();
         return new static(
             search: $data['search'] ?? '',
-            page: $data['page'] ?? ''
+            page: $data['page'] ?? '',
+            countPerPage: 4
         );
     }
 
