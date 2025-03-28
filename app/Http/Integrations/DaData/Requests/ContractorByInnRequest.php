@@ -41,7 +41,10 @@ class ContractorByInnRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): mixed
     {
-        $data = $response->json()['suggestions'][0]['data'];
+        $data = $response->json()['suggestions'];
+        if(empty($data))
+            throw new \Exception('Контрагент не найден', 404);
+        $data = $data[0]['data'];
 
         return new ContractorDto(
             inn: $data['inn'],

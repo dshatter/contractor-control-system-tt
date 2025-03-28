@@ -145,21 +145,21 @@ body {
             }
         }
     }
+}
 
-    .modal {
+.modal {
 
-        &-content {
-            position: relative;
-        }
+    &-content {
+        position: relative;
+    }
 
-        .btn-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
+    .btn-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
 
-        button[type="submit"] {
-            float: right;
-        }
+    button[type="submit"] {
+        float: right;
     }
 }

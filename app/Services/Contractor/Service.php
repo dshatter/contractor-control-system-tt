@@ -47,9 +47,8 @@ class Service
                 page: $data->page
             );
 
-            if (empty($result['items'])) {
+            if (empty($result->items()))
                 throw ApplicationException::notFound();
-            }
 
             return ContractorResource::collection($result);
         }

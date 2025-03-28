@@ -63,10 +63,12 @@ class Connector extends BaseConnector
                     "branch_type" => "MAIN",
                 ]
             ));
+
+            return $response->dto();
+
         } catch (\Throwable $e) {
-            throw ApplicationException::init('Ошибка подключения к DaData API: '.$e->getMessage(), $e->getCode() ?? 503);
+            throw ApplicationException::init('DaData API: '.$e->getMessage(), $e->getCode() ?? 503);
         }
-        return $response->dto();
     }
 
     /**
