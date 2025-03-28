@@ -7,6 +7,17 @@ use App\Http\Integrations\DaData\Connector as DaDataConnector;
 use App\Services\Contractor\Service;
 use Illuminate\Support\Facades\App;
 
+
+/**
+ * @OA\Info(
+ *     title="User-Contractors Doc API",
+ *     version="1.0.0",
+ * ),
+ *
+ * @OA\PathItem(path="/api/"),
+ *
+ */
+
 class BaseController extends Controller
 {
 

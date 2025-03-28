@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 const routes = [
     {
-        path: '/index',
+        path: '/',
         name: 'user.index',
         component: () => import('./components/Index.vue'),
     },
