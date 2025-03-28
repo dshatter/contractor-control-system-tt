@@ -1,12 +1,23 @@
 <template>
-    <div class="btn-group" style="position: absolute; top: 5px;">
-        <button v-if="!token" @click.prevent="logout" class="btn btn-outline-dark">Logout</button>
-    </div>
     <router-view></router-view>
+
+    <VuePreloader
+        background-color="#ffffff"
+        color="#000000"
+        transition-type="fade-up"
+        :loading-speed="10"
+        :transition-speed="700"
+    >
+    </VuePreloader>
 </template>
 
 <script>
+import { VuePreloader } from 'vue-preloader';
+import '../../node_modules/vue-preloader/dist/style.css'
 export default {
+    components: {
+        VuePreloader
+    },
     data() {
         return {
             token: null,

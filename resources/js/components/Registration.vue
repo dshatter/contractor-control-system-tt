@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <section class="content">
+    <section class="registration content">
         <div class="card shadow">
             <div class="card-body">
                 <h2 class="card-title">Регистрация</h2>

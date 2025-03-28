@@ -40,9 +40,9 @@ const actions = {
         axios
             .get('/api/contractors', {params: state.params})
             .then(res => {
-                commit('setContractors', res.data.data);
-                commit('setPagination', res.data.meta);
                 commit('setStatus', res.status);
+                commit('setContractors', (res.status !== 204) ? res.data.data : {});
+                commit('setPagination', (res.status !== 204) ? res.data.meta : {});
             })
             .catch(err => {
                 commit('setStatus', err.status);

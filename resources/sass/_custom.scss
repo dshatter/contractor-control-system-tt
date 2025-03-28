@@ -24,7 +24,9 @@ body {
     width: 100%;
     height: auto;
 
-    &:has(.empty-state) {
+    &:has(.empty-state),
+    &:has(section.login),
+    &:has(section.registration) {
         height: 100%;
     }
 

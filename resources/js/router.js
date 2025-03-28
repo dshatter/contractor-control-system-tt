@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
-
 const routes = [
     {
         path: '/index',
@@ -27,9 +26,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('x_xsrf_token');
 
-    if(!token) {
+    if (!token) {
         return (to.name === 'user.login' || to.name === 'user.register') ? next() : next({ name: 'user.login' });
-    }else {
+    } else {
         if (to.name === 'user.login' || to.name === 'user.register') {
             return next({ name: 'user.index' });
         }
@@ -38,6 +37,5 @@ router.beforeEach((to, from, next) => {
     return next();
 
 });
-
 
 export default router;

@@ -11,7 +11,6 @@ export default {
             token: null,
         };
     },
-
     methods: {
         login() {
             axios
@@ -44,7 +43,7 @@ export default {
 </script>
 
 <template>
-    <section class="content">
+    <section class="login content">
         <div class="card shadow">
             <div class="card-body">
                 <h2 class="card-title">Вход в аккаунт</h2>

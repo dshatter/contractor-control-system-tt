@@ -18,6 +18,7 @@ export default {
         }),
     },
     mounted() {
+
         this.getData();
     },
     computed: {
